@@ -9,7 +9,7 @@ namespace Equipment_Loan_Management_System__ELMS_
         public string Nombre { get; set; } = string.Empty;
         public string Descripcion { get; set; } = string.Empty;
 
-        // Propiedad que aparece en captura de Swagger
+      
         public bool IsActive { get; set; } = true;
     }
 }
