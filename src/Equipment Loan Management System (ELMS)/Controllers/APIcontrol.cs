@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-// CORRECCIÓN: Quitamos ".Controllers" de la ruta. Ahora apunta directo a tus carpetas de datos.
+// Para trabajjar en los controles de la api se quito ".Controllers" de la ruta. Ahora apunta directo a tus carpetas de datos.
 
 namespace Equipment_Loan_Management_System__ELMS_.Controllers
 {
@@ -18,18 +18,18 @@ namespace Equipment_Loan_Management_System__ELMS_.Controllers
 
         private static int proximoId = 3;
 
-        // ==========================================
+       
         // 1. GET ALL
-        // ==========================================
+      
         [HttpGet]
         public ActionResult<IEnumerable<Equipo>> GetTodos()
         {
             return Ok(bdProductos);
         }
 
-        // ==========================================
+       
         // 2. GET BY ID
-        // ==========================================
+       
         [HttpGet("{id}")]
         public ActionResult<Equipo> GetPorId(int id)
         {
@@ -53,9 +53,9 @@ namespace Equipment_Loan_Management_System__ELMS_.Controllers
             return Ok(equipoEncontrado);
         }
 
-        // ==========================================
+        
         // 3. POST 
-        // ==========================================
+       
         [HttpPost]
         public ActionResult<Equipo> Crear([FromBody] Equipo nuevoEquipo)
         {
@@ -74,13 +74,13 @@ namespace Equipment_Loan_Management_System__ELMS_.Controllers
             return CreatedAtAction(nameof(GetPorId), new { id = nuevoEquipo.Id }, nuevoEquipo);
         }
 
-        // ==========================================
+        
         // 4. PUT 
-        // ==========================================
+        
         [HttpPut("{id}")]
         public IActionResult Actualizar(int id, [FromBody] Equipo equipoActualizado)
         {
-            Equipo? equipoDestino = null; // Ajustado con '?' para evitar advertencias
+            Equipo? equipoDestino = null; // Ajusta con '?' para evitar advertencias
 
             foreach (var prod in bdProductos)
             {
@@ -105,13 +105,13 @@ namespace Equipment_Loan_Management_System__ELMS_.Controllers
             return NoContent();
         }
 
-        // ==========================================
+        
         // 5. DELETE
-        // ==========================================
+      
         [HttpDelete("{id}")]
         public IActionResult Eliminar(int id)
         {
-            Equipo? equipoAEliminar = null; // Ajustado con '?' para evitar advertencias
+            Equipo? equipoAEliminar = null; 
 
             foreach (var prod in bdProductos)
             {
