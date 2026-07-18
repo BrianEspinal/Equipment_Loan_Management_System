@@ -11,11 +11,13 @@ public class Loan : BaseEntity
     public Employee Employee { get; set; } = null!;
 
     public DateTime LoanDate { get; set; } = DateTime.UtcNow;
-    public DateTime ExpectedReturnDate { get; set; }
+    public DateTime ExpecReturnDate { get; set; }
     public DateTime? ActualReturnDate { get; set; }
     public string Status { get; set; } = "Active";
     public string? Notes { get; set; }
 
-    public int? ApprovedByUserId { get; set; }
-    public User? ApprovedByUser { get; set; }
+    public int? ApprovedByUserId { get; set; }  //la logica es que tome el PK asignada segun el usuario 
+                                              // haciendo uso de su valor numerico en la DB por medio [int?
+    public User? ApprovedByUser { get; set; } //la logica es que tome el PK asignada segun el usuario 
+                                              // haciendo uso de su valor numerico en la DB por medio [int?
 }
