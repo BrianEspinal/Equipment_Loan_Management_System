@@ -11,7 +11,9 @@ public class ServiceResult<T>
     public string Message { get; set; } = string.Empty;
 
 
-    public T? Data { get; set; }
+    public T? Data { get; set; }    //T es un tipo genérico que permite que la clase ServiceResult pueda contener datos de cualquier tipo,
+                                    /// lo que la hace flexible y reutilizable para diferentes tipos de resultados de servicio.
+                                   
 
     public List<string> Errors { get; set; } = [];
 

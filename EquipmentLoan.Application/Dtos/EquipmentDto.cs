@@ -1,6 +1,7 @@
 ﻿namespace EquipmentLoan.Application.Dtos;
 
-public class EquipmentDto
+public class EquipmentDto        
+                                //Es metodo de transporte de datos entre capas, sin exponer la entidad directamente.  {comentario para mi}
 {
     public int Id { get; set; }
 
