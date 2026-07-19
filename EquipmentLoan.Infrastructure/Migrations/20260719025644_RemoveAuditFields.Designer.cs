@@ -4,6 +4,7 @@ using EquipmentLoan.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EquipmentLoan.Infrastructure.Migrations
 {
     [DbContext(typeof(EquipmentLoanContext))]
-    partial class EquipmentLoanContextModelSnapshot : ModelSnapshot
+    [Migration("20260719025644_RemoveAuditFields")]
+    partial class RemoveAuditFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
