@@ -1,11 +1,15 @@
 ﻿using EquipmentLoan.Domain.Entities;
+//
 using EquipmentLoan.Domain.Repository;
+//
 using EquipmentLoan.Infrastructure.Context;
+//
 using EquipmentLoan.Infrastructure.Core;
+//
 using Microsoft.EntityFrameworkCore;
-
+//
 namespace EquipmentLoan.Infrastructure.Repositories;
-
+/// Implementación de la interfaz IEquipmentRepository para el repositorio de equipos
 public class EquipmentRepository
     : BaseRepository<Equipment>, IEquipmentRepository
 {

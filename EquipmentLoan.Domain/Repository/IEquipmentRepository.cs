@@ -1,7 +1,7 @@
 ﻿using EquipmentLoan.Domain.Entities;
 
 namespace EquipmentLoan.Domain.Repository;
-
+//padre CRUD EQUIPMENTREPOSITORY
 
 public interface IEquipmentRepository : IBaseRepository<Equipment>
 {

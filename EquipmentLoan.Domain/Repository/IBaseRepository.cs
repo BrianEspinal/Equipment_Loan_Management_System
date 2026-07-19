@@ -1,7 +1,7 @@
 ﻿using EquipmentLoan.Domain.Core;
 
-namespace EquipmentLoan.Domain.Repository;  
-
+namespace EquipmentLoan.Domain.Repository;
+                                             //Padre CRUD comunes que deben implementar BASEREPOSITORY
 public interface IBaseRepository<TEntity>
     where TEntity : BaseEntity
 {
