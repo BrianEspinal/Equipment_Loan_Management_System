@@ -1,4 +1,5 @@
 using EquipmentLoan.Domain.Core;
+using System.Text.Json.Serialization;
 
 namespace EquipmentLoan.Domain.Entities;
 
@@ -8,9 +9,11 @@ public class Employee : BaseEntity{
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-    public int DepartmentID { get; set; }
+    public int DepartmentId { get; set; }
+    [JsonIgnore]
     public Department Department { get; set; } = null!;
 
+    [JsonIgnore]
     public ICollection<Loan> Loans { get; set; } = [];
    
 

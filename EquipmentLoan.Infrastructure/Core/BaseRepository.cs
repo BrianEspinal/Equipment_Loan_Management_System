@@ -23,14 +23,14 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>
         _context = context;
         _dbSet = context.Set<TEntity>();
     }
-    public async Task<List<TEntity>> GetAllAsync()
+    public virtual async Task<List<TEntity>> GetAllAsync()
     {
         return await _dbSet
             .AsNoTracking()
             .ToListAsync();
     }
 
-    public async Task<TEntity?> GetByIdAsync(int id)
+    public virtual async Task<TEntity?> GetByIdAsync(int id)
     {
         return await _dbSet.FindAsync(id);
     }

@@ -24,5 +24,18 @@ namespace EquipmentLoan.Infrastructure.Context
         public DbSet<Brand> Brands => Set<Brand>();
 
         public DbSet<User> Users => Set<User>();
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Equipment>()
+                .HasIndex(equipment => equipment.InventoryCode)
+                .IsUnique();
+
+            foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(entity => entity.GetForeignKeys()))
+            {
+                if (foreignKey.DeleteBehavior == DeleteBehavior.Cascade)
+                    foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+        }
     }
 }

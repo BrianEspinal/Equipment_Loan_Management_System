@@ -10,12 +10,19 @@ namespace EquipmentLoan.Application.Service;
 public class EquipmentService : IEquipmentService
 {
     private readonly IEquipmentRepository _equipmentRepository;
+    private readonly IBaseRepository<Category> _categoryRepository;
+    private readonly IBaseRepository<Brand> _brandRepository;
 
     // Trabajamos con la interfaz para no depender directamente
     // de Entity Framework ni de context
-    public EquipmentService(IEquipmentRepository equipmentRepository)
+    public EquipmentService(
+        IEquipmentRepository equipmentRepository,
+        IBaseRepository<Category> categoryRepository,
+        IBaseRepository<Brand> brandRepository)
     {
         _equipmentRepository = equipmentRepository;
+        _categoryRepository = categoryRepository;
+        _brandRepository = brandRepository;
     }
 
     public async Task<ServiceResult<List<EquipmentDto>>> GetAllAsync()
@@ -86,6 +93,10 @@ public class EquipmentService : IEquipmentService
             return ServiceResult<EquipmentDto>.Failure(errors);
         }
 
+        var referenceError = await ValidateReferencesAsync(dto.CategoryId, dto.BrandId);
+        if (referenceError is not null)
+            return ServiceResult<EquipmentDto>.Failure(referenceError);
+
         // El código de inventario identifica al equipo dentro de la empresa.
         // Por eso no permitimos que se repita.
         bool codeExists =
@@ -152,6 +163,10 @@ public class EquipmentService : IEquipmentService
         {
             return ServiceResult<EquipmentDto>.Failure(errors);
         }
+
+        var referenceError = await ValidateReferencesAsync(dto.CategoryId, dto.BrandId);
+        if (referenceError is not null)
+            return ServiceResult<EquipmentDto>.Failure(referenceError);
 
         var equipment =
             await _equipmentRepository.GetByIdAsync(dto.Id);
@@ -285,6 +300,17 @@ public class EquipmentService : IEquipmentService
         }
 
         return errors;
+    }
+
+    private async Task<string?> ValidateReferencesAsync(int categoryId, int brandId)
+    {
+        if (await _categoryRepository.GetByIdAsync(categoryId) is null)
+            return "La categoría seleccionada no existe.";
+
+        if (await _brandRepository.GetByIdAsync(brandId) is null)
+            return "La marca seleccionada no existe.";
+
+        return null;
     }
 
     private static EquipmentDto MapToDto(Equipment equipment)

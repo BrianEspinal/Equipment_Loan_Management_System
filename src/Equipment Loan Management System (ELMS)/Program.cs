@@ -1,6 +1,7 @@
 using EquipmentLoan.Domain.Repository;
 using EquipmentLoan.Infrastructure.Repositories;
 using EquipmentLoan.Infrastructure.Context;
+using EquipmentLoan.Infrastructure.Core;
 using Microsoft.EntityFrameworkCore;
 using EquipmentLoan.Application.Contract;
 using EquipmentLoan.Application.Service;
@@ -16,13 +17,13 @@ builder.Services.AddDbContext<EquipmentLoanContext>(options =>  //172 Registramo
 
 builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();
 builder.Services.AddScoped<IEquipmentService, EquipmentService>();
-
-
-builder.Services.AddScoped<IEquipmentRepository, EquipmentRepository>();  // 172 inyección de dependencias en EquipmentRepository desde IEquipmentRepository.
+builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+builder.Services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
+builder.Services.AddScoped<ILoanRepository, LoanRepository>();
+builder.Services.AddScoped<ILoanService, LoanService>();
 
 // Add services to the container.
 
-builder.Services.AddControllers();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 

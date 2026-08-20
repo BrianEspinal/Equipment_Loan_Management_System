@@ -18,6 +18,24 @@ public class EquipmentRepository
     {
     }
 
+    public override async Task<List<Equipment>> GetAllAsync()
+    {
+        return await _context.Equipments
+            .AsNoTracking()
+            .Include(equipment => equipment.Category)
+            .Include(equipment => equipment.Brand)
+            .OrderBy(equipment => equipment.Name)
+            .ToListAsync();
+    }
+
+    public override async Task<Equipment?> GetByIdAsync(int id)
+    {
+        return await _context.Equipments
+            .Include(equipment => equipment.Category)
+            .Include(equipment => equipment.Brand)
+            .FirstOrDefaultAsync(equipment => equipment.Id == id);
+    }
+
     public async Task<Equipment?> GetByInventoryCodeAsync(
         string inventoryCode)
     {
