@@ -22,30 +22,51 @@ public class CrudService<TEntity>(IBaseRepository<TEntity> repository)
 
     public async Task<ServiceResult<TEntity>> CreateAsync(TEntity entity)
     {
-        entity.Id = 0;
-        await repository.AddAsync(entity);
-        await repository.SaveChangesAsync();
-        return ServiceResult<TEntity>.Success(entity, "Registro creado correctamente.");
+        try
+        {
+            entity.Id = 0;
+            await repository.AddAsync(entity);
+            await repository.SaveChangesAsync();
+            return ServiceResult<TEntity>.Success(entity, "Registro creado correctamente.");
+        }
+        catch (Exception ex)
+        {
+            return ServiceResult<TEntity>.Failure($"Error al crear el registro: {ex.Message}");
+        }
     }
 
     public async Task<ServiceResult<TEntity>> UpdateAsync(int id, TEntity entity)
     {
-        var existing = await repository.GetByIdAsync(id);
-        if (existing is null) return ServiceResult<TEntity>.Failure("El registro no fue encontrado.");
+        try
+        {
+            var existing = await repository.GetByIdAsync(id);
+            if (existing is null) return ServiceResult<TEntity>.Failure("El registro no fue encontrado.");
 
-        entity.Id = id;
-        repository.Update(entity);
-        await repository.SaveChangesAsync();
-        return ServiceResult<TEntity>.Success(entity, "Registro actualizado correctamente.");
+            entity.Id = id;
+            repository.Update(entity);
+            await repository.SaveChangesAsync();
+            return ServiceResult<TEntity>.Success(entity, "Registro actualizado correctamente.");
+        }
+        catch (Exception ex)
+        {
+            return ServiceResult<TEntity>.Failure($"Error al actualizar el registro: {ex.Message}");
+        }
     }
 
     public async Task<ServiceResult<bool>> DeleteAsync(int id)
     {
-        var entity = await repository.GetByIdAsync(id);
-        if (entity is null) return ServiceResult<bool>.Failure("El registro no fue encontrado.");
+        try
+        {
+            var entity = await repository.GetByIdAsync(id);
+            if (entity is null) return ServiceResult<bool>.Failure("El registro no fue encontrado.");
 
-        repository.Delete(entity);
-        await repository.SaveChangesAsync();
-        return ServiceResult<bool>.Success(true, "Registro eliminado correctamente.");
+            repository.Delete(entity);
+            await repository.SaveChangesAsync();
+            return ServiceResult<bool>.Success(true, "Registro eliminado correctamente.");
+        }
+        catch (Exception ex)
+        {
+            return ServiceResult<bool>.Failure($"No se puede eliminar el registro. Es posible que esté en uso por otros elementos. ({ex.Message})");
+        }
     }
 }
