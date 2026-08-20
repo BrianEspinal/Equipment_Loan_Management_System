@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="src/EquipmentLoan.Application/EquipmentLoan.Application.csproj" />
-  <Project Path="src/EquipmentLoan.Domain/EquipmentLoan.Domain.csproj" />
-  <Project Path="src/EquipmentLoan.Infrastructure/EquipmentLoan.Infrastructure.csproj" />
-  <Project Path="src/EquipmentLoan.API/EquipmentLoan.API.csproj" />
-</Solution>
