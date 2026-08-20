@@ -22,20 +22,20 @@ public abstract class CrudController<TEntity>(ICrudService<TEntity> service) : C
     public async Task<IActionResult> Create([FromBody] TEntity entity)
     {
         var result = await service.CreateAsync(entity);
-        return CreatedAtAction(nameof(GetById), new { id = result.Data!.Id }, result);
+        return result.IsSuccess ? StatusCode(201, result) : BadRequest(result);
     }
 
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] TEntity entity)
     {
         var result = await service.UpdateAsync(id, entity);
-        return result.IsSuccess ? Ok(result) : NotFound(result);
+        return result.IsSuccess ? Ok(result) : BadRequest(result);
     }
 
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
         var result = await service.DeleteAsync(id);
-        return result.IsSuccess ? Ok(result) : NotFound(result);
+        return result.IsSuccess ? Ok(result) : BadRequest(result);
     }
 }
