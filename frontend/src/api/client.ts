@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-// Si existe la variable VITE_API_URL se usa, de lo contrario usamos la ruta relativa '/api' con el proxy de Vite o puerto 5055
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5055/api';
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -13,10 +12,11 @@ export const apiClient = axios.create({
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Extraer mensaje del ServiceResult devuelto por el backend si existe
+    // Extraer mensaje detallado del ServiceResult devuelto por el backend
+    const errorsList = error.response?.data?.errors;
     const message =
+      (Array.isArray(errorsList) && errorsList.length > 0 ? errorsList.join(', ') : null) ||
       error.response?.data?.message ||
-      error.response?.data?.errors?.join(', ') ||
       error.message ||
       'Ocurrió un error inesperado al comunicarse con el servidor.';
     return Promise.reject(new Error(message));

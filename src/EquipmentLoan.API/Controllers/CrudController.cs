@@ -22,7 +22,7 @@ public abstract class CrudController<TEntity>(ICrudService<TEntity> service) : C
     public async Task<IActionResult> Create([FromBody] TEntity entity)
     {
         var result = await service.CreateAsync(entity);
-        return result.IsSuccess ? StatusCode(201, result) : BadRequest(result);
+            return result.IsSuccess ? StatusCode(201, result) : BadRequest(result);
     }
 
     [HttpPut("{id:int}")]

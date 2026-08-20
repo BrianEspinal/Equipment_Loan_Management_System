@@ -36,7 +36,8 @@ public class CrudService<TEntity>(IBaseRepository<TEntity> repository)
         }
         catch (Exception ex)
         {
-            return ServiceResult<TEntity>.Failure($"Error al crear el registro: {ex.Message}");
+            var msg = ex.InnerException?.Message ?? ex.Message;
+            return ServiceResult<TEntity>.Failure($"Error al crear el registro: {msg}");
         }
     }
 
@@ -60,7 +61,8 @@ public class CrudService<TEntity>(IBaseRepository<TEntity> repository)
         }
         catch (Exception ex)
         {
-            return ServiceResult<TEntity>.Failure($"Error al actualizar el registro: {ex.Message}");
+            var msg = ex.InnerException?.Message ?? ex.Message;
+            return ServiceResult<TEntity>.Failure($"Error al actualizar el registro: {msg}");
         }
     }
 
@@ -106,7 +108,8 @@ public class CrudService<TEntity>(IBaseRepository<TEntity> repository)
         }
         catch (Exception ex)
         {
-            return ServiceResult<bool>.Failure($"No se puede eliminar el registro. Es posible que esté en uso por otros elementos. ({ex.Message})");
+            var msg = ex.InnerException?.Message ?? ex.Message;
+            return ServiceResult<bool>.Failure($"No se puede eliminar el registro. ({msg})");
         }
     }
 }

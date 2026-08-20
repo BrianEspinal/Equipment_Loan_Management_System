@@ -43,7 +43,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseCors("AllowFrontend");
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
@@ -53,6 +56,19 @@ if(app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapControllers();
+// Aplicar migraciones pendientes automáticamente al iniciar
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<EquipmentLoanContext>();
+        dbContext.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Error al aplicar migraciones automáticas a la base de datos.");
+    }
+}
 
 app.Run();
