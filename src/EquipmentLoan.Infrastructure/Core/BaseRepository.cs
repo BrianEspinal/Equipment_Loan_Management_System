@@ -1,4 +1,4 @@
-﻿using EquipmentLoan.Domain.Core;
+using EquipmentLoan.Domain.Core;
 
 using EquipmentLoan.Domain.Repository;
 
@@ -43,12 +43,28 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>
 
     public void Update(TEntity entity)
     {
-        _dbSet.Update(entity);
+        var tracked = _dbSet.Local.FirstOrDefault(e => e.Id == entity.Id);
+        if (tracked != null && !ReferenceEquals(tracked, entity))
+        {
+            _context.Entry(tracked).CurrentValues.SetValues(entity);
+        }
+        else
+        {
+            _dbSet.Update(entity);
+        }
     }
 
     public void Delete(TEntity entity)
     {
-        _dbSet.Remove(entity);
+        var tracked = _dbSet.Local.FirstOrDefault(e => e.Id == entity.Id);
+        if (tracked != null && !ReferenceEquals(tracked, entity))
+        {
+            _dbSet.Remove(tracked);
+        }
+        else
+        {
+            _dbSet.Remove(entity);
+        }
     }
 
     public async Task<int> SaveChangesAsync()
