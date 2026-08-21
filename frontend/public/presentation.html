@@ -357,7 +357,72 @@
   </div>
 
   <!-- SLIDE 6: CIERRE -->
+  <!-- SLIDE 6: CASO DE ÉXITO REAL: SCADOM SRL (SCANIA DOMINICANA) -->
   <div class="slide" id="slide-5">
+    <div class="max-w-5xl w-full space-y-6">
+      <div class="text-center space-y-2">
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center justify-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          Validación en Entorno Corporativo Real
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Implementación Beta en SCADOM SRL</h2>
+        <p class="text-slate-400 text-sm max-w-xl mx-auto">Scania Dominicana confía en la arquitectura de ELMS para el control y trazabilidad de sus activos tecnológicos.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        <!-- Columna Izquierda: Logo y Detalles -->
+        <div class="md:col-span-5 glass-card p-6 rounded-3xl space-y-5 border-amber-500/20 glow-indigo">
+          <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+            <img src="scania-logo.jpg" alt="Scania Logo" class="h-12 object-contain filter drop-shadow">
+            <div>
+              <h3 class="text-lg font-black text-white">SCADOM SRL</h3>
+              <p class="text-xs text-amber-300 font-semibold">Scania Dominicana</p>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-sm text-slate-300">
+            <div class="flex items-start gap-3">
+              <div class="p-2 rounded-xl bg-amber-500/10 text-amber-400 shrink-0">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+              </div>
+              <p class="text-xs leading-relaxed"><strong class="text-white">Fase Beta Activa:</strong> Pruebas piloto en la gestión de laptops, equipos de diagnóstico y herramientas de TI.</p>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="p-2 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
+                <i data-lucide="users" class="w-4 h-4"></i>
+              </div>
+              <p class="text-xs leading-relaxed"><strong class="text-white">Asignación por Colaborador:</strong> Préstamo ágil a técnicos de taller y personal administrativo.</p>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+              </div>
+              <p class="text-xs leading-relaxed"><strong class="text-white">Cero Pérdidas:</strong> Control estricto de fechas de retorno y estado de entrega de cada equipo.</p>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between">
+            <span class="text-xs font-bold text-amber-300">Estado del Proyecto:</span>
+            <span class="px-3 py-1 rounded-full text-[11px] font-extrabold bg-amber-400 text-slate-950">BETA EN VIVO</span>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Foto de la Sede -->
+        <div class="md:col-span-7 rounded-3xl overflow-hidden glass-card border border-white/10 p-2 shadow-2xl relative group">
+          <img src="scadom-facility.jpg" alt="Instalaciones SCADOM SRL Scania Dominicana" class="w-full h-72 sm:h-80 object-cover rounded-2xl">
+          <div class="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-slate-950/80 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs text-white">
+            <span class="font-medium flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-400"></i> Instalaciones SCADOM SRL</span>
+            <span class="text-slate-400 text-[11px]">Scania Dominicana</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: CIERRE / CALL TO ACTION -->
+  <div class="slide" id="slide-6">
     <div class="max-w-4xl text-center space-y-6">
       <div class="w-16 h-16 rounded-3xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center mx-auto text-slate-950 shadow-2xl shadow-cyan-500/30">
         <i data-lucide="rocket" class="w-8 h-8"></i>
@@ -411,7 +476,7 @@
     lucide.createIcons();
 
     let currentSlide = 0;
-    const totalSlides = 6;
+    const totalSlides = 7;
 
     const dotsContainer = document.getElementById('dotsContainer');
     for (let i = 0; i < totalSlides; i++) {

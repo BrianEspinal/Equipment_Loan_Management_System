@@ -1,4 +1,4 @@
-﻿using EquipmentLoan.Application.Contract;
+using EquipmentLoan.Application.Contract;
 using EquipmentLoan.Application.Dtos;
 using EquipmentLoan.Application.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +7,9 @@ namespace Equipment_Loan_Management_System__ELMS_.Controllers;
 
 [ApiController]
 [Route("api/equipment")]
+[Route("api/equipments")]
+[Route("equipment")]
+[Route("equipments")]
 public class EquipmentController : ControllerBase
 {
     private readonly IEquipmentService _equipmentService;

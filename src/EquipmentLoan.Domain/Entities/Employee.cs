@@ -11,7 +11,7 @@ public class Employee : BaseEntity{
     public string Email { get; set; } = string.Empty;
     public int DepartmentId { get; set; }
     [JsonIgnore]
-    public Department Department { get; set; } = null!;
+    public Department? Department { get; set; }
 
     [JsonIgnore]
     public ICollection<Loan> Loans { get; set; } = [];

@@ -7,11 +7,11 @@ public class Loan : BaseEntity
 {
     public int EquipmentId { get; set; }
     [JsonIgnore]
-    public Equipment Equipment { get; set; } = null!;
+    public Equipment? Equipment { get; set; }
 
     public int EmployeeId { get; set; }
     [JsonIgnore]
-    public Employee Employee { get; set; } = null!;
+    public Employee? Employee { get; set; }
 
     public DateTime LoanDate { get; set; } = DateTime.UtcNow;
     public DateTime ExpectedReturnDate { get; set; }

@@ -6,6 +6,9 @@ namespace Equipment_Loan_Management_System__ELMS_.Controllers;
 
 [ApiController]
 [Route("api/loans")]
+[Route("api/loan")]
+[Route("loans")]
+[Route("loan")]
 public class LoansController(ILoanService loanService) : ControllerBase
 {
     [HttpGet]
